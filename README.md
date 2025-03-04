@@ -7,9 +7,11 @@ You are able to create different sheets and use it for diferent data processing 
 
 Automation sheet should follow the format:
 
+```
     |    A    |    B    |    C    |
 1   | Keyword | Keyword | Keyword |
 2   | Replace | Replace | Replace |
+```
 
 As many Keywords as you want, one replacement per Keyword.
 In the model doc, anything in the format double curly bracket + keyword: {{Keyword}} will be replaced by the replacement text, following format, regardless of text size.
