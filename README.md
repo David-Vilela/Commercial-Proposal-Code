@@ -5,7 +5,8 @@ Make a Google Sheets sheet, go to Extensions > Apps Script, paste code.
 Name the automation tab whatever you want, substitute its name in the code.
 You are able to create different sheets and use it for diferent data processing and calculations.
 
-Automation sheet should follow the format
+Automation sheet should follow the format:
+
     |    A    |    B    |    C    |
 1   | Keyword | Keyword | Keyword |
 2   | Replace | Replace | Replace |
