@@ -1,0 +1,29 @@
+function preencherModelo() {
+  var docTemplateId = "16vG3Z5nGGgOiXx8yDn3aop1G_S2bIo-XvwF4KXxY6t4"; // ID do modelo do Google Docs
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Automação"); // Nome da aba na planilha ativa
+
+  if (!sheet) {
+    Logger.log("Erro: Aba da planilha não encontrada!"); // Erro caso aba da planilha não seja encontrada
+    return;
+  }
+
+  var data = sheet.getDataRange().getValues(); // Pega os dados da planilha
+
+  for (var i = 1; i < data.length; i++) { // Começa da linha 2 para ignorar o cabeçalho
+    var doc = DriveApp.getFileById(docTemplateId).makeCopy(); // Copia o modelo
+    var docId = doc.getId(); // Pega o ID do Documento
+    var docFile = DocumentApp.openById(docId); //  Abre o Documento
+    var docBody = docFile.getBody(); // Pega o corpo do Documento
+
+
+    // Substituir no corpo do documento
+    for (var j = 0; j < data[0].length; j++) {
+      var chave = "{{" + data[0][j] + "}}"; // Nome da coluna como chave
+      docBody.replaceText(chave, data[i][j]); // Substitui nos parágrafos
+    }
+
+    // Renomeia o arquivo com o nome
+    docFile.saveAndClose();
+    doc.setName("Proposta " + data[i][0]);
+  }
+}
